@@ -5,15 +5,29 @@ public class Solution {
 
         for(int i = 0;i<strs.Length;i++)
         {
-            var array = strs[i].ToCharArray();
-            Array.Sort(array);
-            var str = new string(array);
-
-            if(!map.ContainsKey(str))
+            int[] freqArray = new int[26];
+            string s = strs[i];
+            for(int j =0;j<s.Length;j++)
             {
-                map[str] = new List<string>();
+                int index = (int)s[j] - (int)'a';
+                ++freqArray[index];
             }
-                map[str].Add(strs[i]);
+
+            StringBuilder sb = new StringBuilder();
+            for(int j = 0; j<freqArray.Length;j++)
+            {
+                char c = (char)('a' + j);
+                sb.Append(c);
+                sb.Append(freqArray[j]);
+            }
+
+            string key = sb.ToString();
+
+            if(!map.ContainsKey(key))
+            {
+                map[key] = new List<string>();
+            }
+            map[key].Add(s);
         }
 
         return map.Values.ToList<IList<string>>();
