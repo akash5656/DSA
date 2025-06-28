@@ -5,18 +5,15 @@ public class Solution : VersionControl {
     public int FirstBadVersion(int n) {
         int l = 1;
         int r = n;
-        while(l<=r)
+        while(l<r)
         {
             int mid = l + (r-l)/2;
-            var lr = IsBadVersion(l);
-            if(lr)
-            return l;
 
             var mr = IsBadVersion(mid);
 
-            if(!lr && mr)
+            if(mr)
             {
-                r = mid-1;
+                r = mid;
             }
             else
             {
