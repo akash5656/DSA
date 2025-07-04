@@ -10,7 +10,7 @@ public class Solution {
 
         int operationType = -1;
 
-        for(int i = 0; i < operations.Length; i++)
+        for(int i = 0; i < operations.Length; i++)   // log(k)
         {
             length *= 2;
             if(length >= k)
@@ -21,7 +21,7 @@ public class Solution {
             }
         }
 
-        char c = KthCharacter(newK,operations);
+        char c = KthCharacter(newK,operations);  // log(k)
 
         if(operationType == 0)
         {
