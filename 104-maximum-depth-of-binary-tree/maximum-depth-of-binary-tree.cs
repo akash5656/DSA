@@ -13,23 +13,20 @@
  */
 public class Solution {
     public int MaxDepth(TreeNode root) {
-        int maxDepth = 0;
-
         if(root == null)
-            return maxDepth;
-
-        Traverse(root,1,ref maxDepth);
-
-        return maxDepth;
+            return 0;
+            
+        return maxDepth(root);
     }
 
-    public void Traverse(TreeNode curr,int level,ref int maxDepth)
+    public int maxDepth(TreeNode curr)
     {
         if(curr == null)
-            return;
+            return 0;
 
-        maxDepth = Math.Max(maxDepth,level);
-        Traverse(curr.left,level+1,ref maxDepth);
-        Traverse(curr.right,level+1,ref maxDepth);
+        int leftMax = maxDepth(curr.left);
+        int rightMax = maxDepth(curr.right);
+
+        return Math.Max(leftMax,rightMax) + 1;
     }
 }
