@@ -18,10 +18,21 @@ public class Solution {
         if(root == null)
             return [];
 
-        li.Add(root.val);
-        PreorderTraversal(root.left);
-        PreorderTraversal(root.right);
+        Stack<TreeNode> st = new();
+        List<int> ans = new();
+        st.Push(root);
 
-        return li;
+        while(st.Count > 0)
+        {
+            var curr = st.Pop();
+            ans.Add(curr.val);
+            if(curr.right != null)
+                st.Push(curr.right);
+
+            if(curr.left != null)
+                st.Push(curr.left);
+        }
+
+        return ans;
     }
 }
