@@ -13,19 +13,30 @@
  */
 public class Solution {
     public bool IsSymmetric(TreeNode root) {
-        return IsMirror(root.left,root.right);
-    }
+        Queue<TreeNode> q = new();
+        q.Enqueue(root.left);
+        q.Enqueue(root.right);
 
-    public bool IsMirror(TreeNode left,TreeNode right)
-    {
-        if(left==null && right == null)
-            return true;
-        
-        if(left == null || right == null)
-            return false;
+        while(q.Count > 0)
+        {
+            var p1 = q.Dequeue();
+            var p2 = q.Dequeue();
 
-        return left.val == right.val
-                && IsMirror(left.left,right.right)
-                && IsMirror(left.right,right.left);
+            if(p1 == null && p2 == null)
+                continue;
+            
+            if(p1 == null || p2 == null)
+                return false;
+            
+            if(p1.val!= p2.val)
+                return false;
+            
+            q.Enqueue(p1.left);
+            q.Enqueue(p2.right);
+            q.Enqueue(p1.right);
+            q.Enqueue(p2.left);
+        }
+
+        return true;
     }
 }
