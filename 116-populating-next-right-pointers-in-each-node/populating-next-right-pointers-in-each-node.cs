@@ -39,10 +39,6 @@ public class Solution {
                 {
                     top.next = newTop;
                 }
-                else
-                {
-                    top.next = null;
-                }
 
                 if(top.left != null)
                     q.Enqueue(top.left);
