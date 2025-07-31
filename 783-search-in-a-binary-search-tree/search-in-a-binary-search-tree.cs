@@ -12,12 +12,32 @@
  * }
  */
 public class Solution {
+
+    TreeNode ans = null;
+
     public TreeNode SearchBST(TreeNode root, int val) {
 
-        if(root == null || root.val == val)
-            return root;
+        Search(root,val);
 
-        return root.val < val ? SearchBST(root.right,val) : SearchBST(root.left,val);
+        return ans;
 
+    }
+
+    public void Search(TreeNode root,int val)
+    {
+        if(root == null)
+             ans = null;
+        
+        if(root.val == val)
+            ans = root;
+
+        if(root.right!=null && root.val < val)
+        {
+            Search(root.right,val);
+        }
+        if(root.left!=null && root.val > val)
+        {
+            Search(root.left,val);
+        }
     }
 }
