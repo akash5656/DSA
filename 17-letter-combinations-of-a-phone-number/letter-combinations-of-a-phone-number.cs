@@ -24,20 +24,22 @@ public class Solution {
         void BackTrack(int start)
         {
 
-            if(current.Count == input.Length)
+            if(start == input.Length)
             {
                 result.Add(new string(current.ToArray()));
+                return;
             }
-            for(int i = start; i < input.Length; i++)
+
+            string letters = map[input[start]];
+
+            foreach(char c in letters)
             {
-                var refArr = map[input[i]].ToCharArray();
-                for(int j=0; j < refArr.Length; j++)
-                {
-                    current.Add(refArr[j]);
-                    BackTrack(i+1);
-                    current.RemoveAt(current.Count-1);
-                }
+                current.Add(c);
+                BackTrack(start+1);
+                current.RemoveAt(current.Count-1);
             }
+
+            
         }
 
         return result;
